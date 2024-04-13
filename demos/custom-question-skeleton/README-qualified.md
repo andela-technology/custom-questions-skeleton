@@ -64,18 +64,31 @@ In the future, this will be made more robust once asynchronous scoring support i
 
 Learnosity expects its partners to host the bundled question and scorer files. Qualified provides the bundle URLs to Learnosity via its [console](https://console.learnosity.com). When one of Learnosity's customers uses a Qualified custom question, Learnosity pulls down and executes the hosted scripts.
 
-Since these are purely static files, Qualified hosts them here on GitHub in the `dist` directory, served by JSDelivr. See [JSDelivr's docs](https://www.jsdelivr.com/?docs=gh) for URL format details. The most relevant part is the `@` symbol, which enables a particular commit or branch to be served:
+Since these are purely static files, Qualified hosts them here on GitHub in the `dist` directory of the `qualified-custom-question-dist` branch, served by JSDelivr. See [JSDelivr's docs](https://www.jsdelivr.com/?docs=gh) for URL format details. The most relevant part is the `@` symbol, which enables a particular commit or branch to be served:
 
-- To serve the current scorer JS dist on the `qualified-custom-question` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question/demos/custom-question-skeleton/dist/scorer.js>
-- To serve the current question JS dist on the `qualified-custom-question` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question/demos/custom-question-skeleton/dist/question.js>
-- To serve the current question CSS dist on the `qualified-custom-question` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question/demos/custom-question-skeleton/dist/question.css>
+- To serve the current scorer JS dist on the `qualified-custom-question-dist` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question-dist/demos/custom-question-skeleton/dist/scorer.js>
+- To serve the current question JS dist on the `qualified-custom-question-dist` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question-dist/demos/custom-question-skeleton/dist/question.js>
+- To serve the current question CSS dist on the `qualified-custom-question-dist` branch: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@qualified-custom-question-dist/demos/custom-question-skeleton/dist/question.css>
 - To serve the question JS dist from a particular commit: <https://cdn.jsdelivr.net/gh/andela-technology/custom-questions-skeleton@c638fa3/demos/custom-question-skeleton/dist/question.js>
 
 It's best to use a specific commit so that breaking or inadvertent changes won't mess up clients. When a specific commit is used, it's important to remember to update it on Learnosity's end (via the [console](https://console.learnosity.com)) after each deploy.
 
-This setup isn't entirely ideal, since the dist files are committed to source control, but it's simple and keeps the integration code isolated from Qualified's server and codebase.
+This setup has the downside of committing distribution files to source control, similar to GitHub Pages, but it's simple and keeps the integration code isolated from Qualified's server and codebase.
 
 JSDelivr caches for a week, but you can use their [cache purge tool](https://www.jsdelivr.com/tools/purge) to flush after a deploy. Learnosity may also cache scripts on their end, so they may need to flush on their end as well.
+
+### Creating a new dist release
+
+```
+git checkout qualified-custom-question-dist
+git merge qualified-custom-question
+yarn run prod
+git add -f dist
+git commit -m "Production deploy: <brief list of changes>"
+git push
+```
+
+The new commit hash should then be substituted into any URLs in the Learnosity console and in Learnosity's settings set by our partner contact as described above.
 
 ## Embed Versioning
 
