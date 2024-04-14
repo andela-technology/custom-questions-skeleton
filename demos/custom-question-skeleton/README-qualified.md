@@ -123,3 +123,9 @@ Before work began on the integration, Learnosity developed a proof of concept wh
 - [Assessment demo](https://labs.staging.learnosity.com/partners/qualified/assessment.php?env=prod)
 
 The POC question.js source is [POC.js](POC.js) here in the repo. While there's no obvious way to build or run it without more context from Learnosity, it served as a guideline for developing the custom question and may be nice to reference in the future.
+
+## Known issues/possible improvements
+
+- Qualified instances should be destroyed to reclaim memory, event handlers and DOM elements, but Learnosity doesn't seem to offer a hook that would support something like `on("destroy", () => manager.destroy())`.
+- The Embed manager SDK doesn't send events to our monitoring system (new relic/datadog) and doesn't capture usage statistics in general.
+- GitHub releases for production dists would be better than commit hashes for clarity.
