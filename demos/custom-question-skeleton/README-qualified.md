@@ -6,6 +6,11 @@ This branch contains Qualified's _custom question_ integration code for Learnosi
 
 A custom question allows Learnosity's integration partners to offer Learnosity customers a distinct question experience to supplement their off-the-shelf questions. In this case, Qualified's custom question is a coding challenge, injected in an iframe into a Learnosity assessment using Qualified's [Embed](https://www.qualified.io/embedded) feature. Qualified brings interactive, robust coding skill tests to Learnosity, in a bite-sized, challenge-based Embed format.
 
+Here are a couple of marketing links to provide more information on the integration:
+
+- [Qualified in Learnosity's partners directory](https://learnosity.com/company/partners/partners-directory/qualified/), which features a video preview
+- [Qualified custom question assessment demo](https://demos.learnosity.com/partners/qualified.php)
+
 ## Team Set-up and Question Authoring Configuration
 
 The first step for setting up a customer of Learnosity to use Embed is generating an `embedClientKey` for their team, then providing it to Qualified's contact at Learnosity to configure the customer with in their settings for the custom question integration.
